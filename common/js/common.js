@@ -41,11 +41,14 @@ if(jQuery) jQuery.noConflict();
 				doClick : false
 			};
 
-			switch(arguments.length) {
+			switch(arguments.length) 
+			{
 				case 1:
-					if(typeof(arguments[0]) == "string") {
+					if(typeof(arguments[0]) == "string") 
+					{
 						itemName = arguments[0];
-					} else {
+					} else 
+					{
 						$.extend(options, arguments[0] || {});
 						itemName = 'cart';
 					}
@@ -58,20 +61,26 @@ if(jQuery) jQuery.noConflict();
 			if(options.doClick === true) options.checked = null;
 			if(typeof(options.wrap) == "string") options.wrap ='#'+options.wrap;
 
-			if(options.wrap) {
+			if(options.wrap) 
+			{
 				obj = $(options.wrap).find('input[name="'+itemName+'"]:checkbox');
-			} else {
+			} else 
+			{
 				obj = $('input[name="'+itemName+'"]:checkbox');
 			}
 
-			if(options.checked == 'toggle') {
+			if(options.checked == 'toggle') 
+			{
 				obj.each(function() {
 					$(this).attr('checked', ($(this).attr('checked')) ? false : true);
 				});
-			} else {
-				if(options.doClick === true) {
+			} else 
+			{
+				if(options.doClick === true) 
+				{
 					obj.click();
-				} else {
+				} else 
+				{
 					obj.attr('checked', options.checked);
 				}
 			}
@@ -86,15 +95,20 @@ if(jQuery) jQuery.noConflict();
 			var menus = ret_obj.menus;
 			var html = "";
 
-			if(this.loaded_popup_menus[menu_id]) {
+			if(this.loaded_popup_menus[menu_id]) 
+			{
 				html = this.loaded_popup_menus[menu_id];
 
-			} else {
-				if(menus) {
+			} else 
+			{
+				if(menus) 
+				{
 					var item = menus.item;
 					if(typeof(item.length)=='undefined' || item.length<1) item = new Array(item);
-					if(item.length) {
-						for(var i=0;i<item.length;i++) {
+					if(item.length) 
+					{
+						for(var i=0;i<item.length;i++) 
+						{
 							var url = item[i].url;
 							var str = item[i].str;
 							var icon = item[i].icon;
@@ -103,7 +117,8 @@ if(jQuery) jQuery.noConflict();
 							var styleText = "";
 							var click_str = "";
 							/* if(icon) styleText = " style=\"background-image:url('"+icon+"')\" "; */
-							switch(target) {
+							switch(target) 
+							{
 								case "popup" :
 										click_str = 'onclick="popopen(this.href, \''+target+'\'); return false;"';
 									break;
@@ -124,7 +139,8 @@ if(jQuery) jQuery.noConflict();
 			}
 
 			/* 레이어 출력 */
-			if(html) {
+			if(html) 
+			{
 				var area = $('#popup_menu_area').html('<ul>'+html+'</ul>');
 				var areaOffset = {top:params.page_y, left:params.page_x};
 
@@ -145,16 +161,20 @@ if(jQuery) jQuery.noConflict();
 jQuery(function($) {
 
 	/* select - option의 disabled=disabled 속성을 IE에서도 체크하기 위한 함수 */
-	if($.browser.msie) {
+	if($.browser.msie) 
+	{
 		$('select').each(function(i, sels) {
 			var disabled_exists = false;
 			var first_enable = [];
 
-			for(var j=0; j < sels.options.length; j++) {
-				if(sels.options[j].disabled) {
+			for(var j=0; j < sels.options.length; j++) 
+			{
+				if(sels.options[j].disabled) 
+				{
 					sels.options[j].style.color = '#CCCCCC';
 					disabled_exists = true;
-				}else{
+				}else
+				{
 					first_enable[i] = (first_enable[i] > -1) ? first_enable[i] : j;
 				}
 			}
@@ -163,7 +183,8 @@ jQuery(function($) {
 
 			sels.oldonchange = sels.onchange;
 			sels.onchange = function() {
-				if(this.options[this.selectedIndex].disabled) {
+				if(this.options[this.selectedIndex].disabled) 
+				{
 
 					this.selectedIndex = first_enable[i];
 					/*
@@ -172,7 +193,8 @@ jQuery(function($) {
 					else this.selectedIndex--;
 					*/
 
-				} else {
+				} else 
+				{
 					if(this.oldonchange) this.oldonchange();
 				}
 			};
@@ -184,7 +206,8 @@ jQuery(function($) {
 
 	/* 단락에디터 fold 컴포넌트 펼치기/접기 */
 	var drEditorFold = $('.xe_content .fold_button');
-	if(drEditorFold.size()) {
+	if(drEditorFold.size()) 
+	{
 		var fold_container = $('div.fold_container', drEditorFold);
 		$('button.more', drEditorFold).click(function() {
 			$(this).hide().next('button').show().parent().next(fold_container).show();
@@ -244,7 +267,8 @@ jQuery(function($) {
 
 		if (typeof(val)=='undefined') val = '';
 
-		if (idx != -1) {
+		if (idx != -1) 
+		{
 			var args = {}, q_list = [];
 			query_string = uri.substr(idx + 1, loc.length);
 			uri = loc.substr(0, idx);
@@ -252,7 +276,8 @@ jQuery(function($) {
 
 			args[key] = val;
 
-			for (var prop in args) {
+			for (var prop in args) 
+			{
 				if (!args.hasOwnProperty(prop)) continue;
 				if (!(v = String(args[prop]).trim())) continue;
 				q_list.push(prop+'='+decodeURI(v));
@@ -260,17 +285,22 @@ jQuery(function($) {
 
 			query_string = q_list.join('&');
 			uri = uri + (query_string ? '?' + encodeURI(query_string) : '');
-		} else {
-			if (String(val).trim()) {
+		} else 
+		{
+			if (String(val).trim()) 
+			{
 				query_string = '?' + key + '=' + val;
 				uri = uri + encodeURI(query_string);
 			}
 		}
 
 		var bUseSSL = !!window.enforce_ssl;
-		if (!bUseSSL && isArray(window.ssl_actions) && (act=uri.getQuery('act'))) {
-			for (var i=0,c=ssl_actions.length; i < c; i++) {
-				if (ssl_actions[i] === act) {
+		if (!bUseSSL && isArray(window.ssl_actions) && (act=uri.getQuery('act'))) 
+		{
+			for (var i=0,c=ssl_actions.length; i < c; i++) 
+			{
+				if (ssl_actions[i] === act) 
+				{
 					bUseSSL = true;
 					break;
 				}
@@ -278,12 +308,14 @@ jQuery(function($) {
 		}
 
 		re = /https?:\/\/([^:\/]+)(:\d+|)/i;
-		if (bUseSSL && re.test(uri)) {
+		if (bUseSSL && re.test(uri)) 
+		{
 			toReplace = 'https://'+RegExp.$1;
 			if (window.https_port && https_port != 443) toReplace += ':' + https_port;
 			uri = uri.replace(re, toReplace);
 		}
-		if (!bUseSSL && re.test(uri)) {
+		if (!bUseSSL && re.test(uri)) 
+		{
 			toReplace = 'http://'+RegExp.$1;
 			if (window.http_port && http_port != 80) toReplace += ':' + http_port;
 			uri = uri.replace(re, toReplace);
