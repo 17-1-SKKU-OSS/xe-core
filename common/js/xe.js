@@ -81,10 +81,12 @@ window.Modernizr = (function( window, document, undefined ) {
       }
 
       ret = callback(div, rule);
-        if( !body ) {
+        if( !body ) 
+		{
           fakeBody.parentNode.removeChild(fakeBody);
           docElement.style.overflow = docOverflow;
-      } else{
+      } else
+	  {
           div.parentNode.removeChild(div);
       }
 
@@ -113,11 +115,13 @@ window.Modernizr = (function( window, document, undefined ) {
                 if( !element.setAttribute ) {
             element = document.createElement('div');
           }
-          if( element.setAttribute && element.removeAttribute ) {
+          if( element.setAttribute && element.removeAttribute ) 
+		  {
             element.setAttribute(eventName, '');
             isSupported = is(element[eventName], 'function');
 
-                    if( !is(element[eventName], 'undefined') ) {
+                    if( !is(element[eventName], 'undefined') ) 
+					{
               element[eventName] = undefined;
             }
             element.removeAttribute(eventName);
@@ -216,7 +220,8 @@ window.Modernizr = (function( window, document, undefined ) {
     function testDOMProps( props, obj, elem ) {
         for ( var i in props ) {
             var item = obj[props[i]];
-            if ( item !== undefined) {
+            if ( item !== undefined) 
+			{
 
                             if (elem === false) return props[i];
 
@@ -235,7 +240,8 @@ window.Modernizr = (function( window, document, undefined ) {
         var ucProp  = prop.charAt(0).toUpperCase() + prop.slice(1),
             props   = (prop + ' ' + cssomPrefixes.join(ucProp + ' ') + ucProp).split(' ');
 
-            if(is(prefixed, "string") || is(prefixed, "undefined")) {
+            if(is(prefixed, "string") || is(prefixed, "undefined")) 
+			{
           return testProps(props, prefixed);
 
             } else {
@@ -467,7 +473,8 @@ window.Modernizr = (function( window, document, undefined ) {
             bool = false;
 
         try {
-            if ( bool = !!elem.canPlayType ) {
+            if ( bool = !!elem.canPlayType ) 
+			{
                 bool      = new Boolean(bool);
                 bool.ogg  = elem.canPlayType('audio/ogg; codecs="vorbis"').replace(/^no$/,'');
                 bool.mp3  = elem.canPlayType('audio/mpeg;')               .replace(/^no$/,'');
